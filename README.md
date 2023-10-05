@@ -1,6 +1,6 @@
 # PointSwitch
 
-> [Json_Integration ](https://github.com/Xcating/Json_Integration) Point是适用于原神ak，ko使用的点位选择器
+> 适用于Akebi/Korepi使用的点位[Json_Integration ](https://github.com/Xcating/Json_Integration) 选择器
 
 
 
