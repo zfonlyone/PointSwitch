@@ -1,6 +1,6 @@
 # PointSwitch
 
-> 适用于Akebi/Korepi使用的点位 [Json_Integration ](https://github.com/Xcating/Json_Integration)    选择器
+> 适用于Akebi/Korepi使用的点位 [Json_Integration ](https://github.com/Xcating/Json_Integration) 选择器
 
 
 
@@ -9,7 +9,7 @@
 
 [PointSwitch](README.md) 
 
-![](E:\Korepi\TP\zf\PointSwitch\IMG\1.png)
+![image](https://github.com/zfonlyone/PointSwitch/blob/main/IMG/1.png)
 
 
 
