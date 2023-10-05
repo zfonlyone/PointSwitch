@@ -1,0 +1,13 @@
+E:\Korepi\TP\PointSwitch\source\PointSwitch\bin\Release\PointSwitch.exe.config
+E:\Korepi\TP\PointSwitch\source\PointSwitch\bin\Release\PointSwitch.exe
+E:\Korepi\TP\PointSwitch\source\PointSwitch\bin\Release\PointSwitch.pdb
+E:\Korepi\TP\PointSwitch\source\PointSwitch\bin\Release\Newtonsoft.Json.dll
+E:\Korepi\TP\PointSwitch\source\PointSwitch\bin\Release\Newtonsoft.Json.xml
+E:\Korepi\TP\PointSwitch\source\PointSwitch\obj\Release\PointSwitch.csproj.AssemblyReference.cache
+E:\Korepi\TP\PointSwitch\source\PointSwitch\obj\Release\PointSwitch.csproj.SuggestedBindingRedirects.cache
+E:\Korepi\TP\PointSwitch\source\PointSwitch\obj\Release\MyPointSwitchApp.Form1.resources
+E:\Korepi\TP\PointSwitch\source\PointSwitch\obj\Release\PointSwitch.csproj.GenerateResource.cache
+E:\Korepi\TP\PointSwitch\source\PointSwitch\obj\Release\PointSwitch.csproj.CoreCompileInputs.cache
+E:\Korepi\TP\PointSwitch\source\PointSwitch\obj\Release\PointSwitch.csproj.CopyComplete
+E:\Korepi\TP\PointSwitch\source\PointSwitch\obj\Release\PointSwitch.exe
+E:\Korepi\TP\PointSwitch\source\PointSwitch\obj\Release\PointSwitch.pdb

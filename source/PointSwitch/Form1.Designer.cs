@@ -30,158 +30,87 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
-            this.treeView2 = new System.Windows.Forms.TreeView();
             this.button01 = new System.Windows.Forms.Button();
-            this.button02 = new System.Windows.Forms.Button();
             this.button03 = new System.Windows.Forms.Button();
-            this.button04 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(48, 74);
+            this.textBox1.Location = new System.Drawing.Point(48, 61);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(322, 21);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(528, 74);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(322, 21);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(48, 135);
+            this.textBox3.Location = new System.Drawing.Point(48, 152);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(322, 21);
             this.textBox3.TabIndex = 2;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(528, 135);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(322, 21);
-            this.textBox4.TabIndex = 3;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(411, 74);
+            this.button1.Location = new System.Drawing.Point(411, 30);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
-            this.button1.Text = "替换目标";
+            this.button1.Text = "目标目录";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(892, 74);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "替换目标";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(411, 135);
+            this.button3.Location = new System.Drawing.Point(411, 140);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 6;
-            this.button3.Text = "加载目录";
+            this.button3.Text = "点位目录";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(892, 135);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "加载目录";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(411, 292);
+            this.button5.Location = new System.Drawing.Point(411, 271);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 8;
             this.button5.Text = "重新加载";
             this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(411, 428);
+            this.button6.Location = new System.Drawing.Point(411, 546);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 9;
             this.button6.Text = "一键替换";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click_1);
-            // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(892, 292);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 10;
-            this.button7.Text = "重新加载";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click_1);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(892, 428);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 11;
-            this.button8.Text = "一键替换";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click_1);
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // treeView1
             // 
             this.treeView1.AllowDrop = true;
-            this.treeView1.Location = new System.Drawing.Point(48, 192);
+            this.treeView1.Location = new System.Drawing.Point(48, 238);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(322, 367);
+            this.treeView1.Size = new System.Drawing.Size(322, 331);
             this.treeView1.TabIndex = 12;
-            // 
-            // treeView2
-            // 
-            this.treeView2.AllowDrop = true;
-            this.treeView2.Location = new System.Drawing.Point(528, 192);
-            this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(322, 367);
-            this.treeView2.TabIndex = 13;
             // 
             // button01
             // 
-            this.button01.Location = new System.Drawing.Point(411, 103);
+            this.button01.Location = new System.Drawing.Point(411, 59);
             this.button01.Name = "button01";
             this.button01.Size = new System.Drawing.Size(75, 23);
             this.button01.TabIndex = 14;
@@ -189,19 +118,9 @@
             this.button01.UseVisualStyleBackColor = true;
             this.button01.Click += new System.EventHandler(this.button01_Click);
             // 
-            // button02
-            // 
-            this.button02.Location = new System.Drawing.Point(892, 103);
-            this.button02.Name = "button02";
-            this.button02.Size = new System.Drawing.Size(75, 23);
-            this.button02.TabIndex = 15;
-            this.button02.Text = "打开目录";
-            this.button02.UseVisualStyleBackColor = true;
-            this.button02.Click += new System.EventHandler(this.button02_Click);
-            // 
             // button03
             // 
-            this.button03.Location = new System.Drawing.Point(411, 164);
+            this.button03.Location = new System.Drawing.Point(411, 169);
             this.button03.Name = "button03";
             this.button03.Size = new System.Drawing.Size(75, 23);
             this.button03.TabIndex = 16;
@@ -209,62 +128,61 @@
             this.button03.UseVisualStyleBackColor = true;
             this.button03.Click += new System.EventHandler(this.button03_Click);
             // 
-            // button04
-            // 
-            this.button04.Location = new System.Drawing.Point(892, 164);
-            this.button04.Name = "button04";
-            this.button04.Size = new System.Drawing.Size(75, 23);
-            this.button04.TabIndex = 17;
-            this.button04.Text = "打开目录";
-            this.button04.UseVisualStyleBackColor = true;
-            this.button04.Click += new System.EventHandler(this.button04_Click);
-            // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(411, 358);
+            this.button9.Location = new System.Drawing.Point(411, 414);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 18;
-            this.button9.Text = "增加";
+            this.button9.Text = "增量添加";
             this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click_1);
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // button10
+            // button4
             // 
-            this.button10.Location = new System.Drawing.Point(892, 358);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(75, 23);
-            this.button10.TabIndex = 19;
-            this.button10.Text = "增加";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click_1);
+            this.button4.Location = new System.Drawing.Point(411, 88);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 21;
+            this.button4.Text = "清空目录";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(411, 588);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 22;
+            this.button7.Text = "批量重命名";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(48, 588);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(322, 21);
+            this.textBox2.TabIndex = 23;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::PointSwitch.Properties.Resources._0b7b02087bf40ad1021630eb552c11dfa8eccecc;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1082, 606);
-            this.Controls.Add(this.button10);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button04);
-            this.Controls.Add(this.button03);
-            this.Controls.Add(this.button02);
-            this.Controls.Add(this.button01);
-            this.Controls.Add(this.treeView2);
-            this.Controls.Add(this.treeView1);
-            this.Controls.Add(this.button8);
+            this.ClientSize = new System.Drawing.Size(513, 626);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button7);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.button03);
+            this.Controls.Add(this.button01);
+            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -277,25 +195,18 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.TreeView treeView2;
         private System.Windows.Forms.Button button01;
-        private System.Windows.Forms.Button button02;
         private System.Windows.Forms.Button button03;
-        private System.Windows.Forms.Button button04;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

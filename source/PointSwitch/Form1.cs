@@ -9,6 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
+using System.Linq.Expressions;
+using static System.Net.WebRequestMethods;
 
 namespace MyPointSwitchApp
 {
@@ -33,7 +41,7 @@ namespace MyPointSwitchApp
             try
             {
                 // 检查INI文件是否存在
-                if (File.Exists(iniFilePath))
+                if (System.IO.File.Exists(iniFilePath))
                 {
                     // 创建一个INI文件读取器
                     using (StreamReader reader = new StreamReader(iniFilePath))
@@ -46,18 +54,11 @@ namespace MyPointSwitchApp
                             {
                                 textBox1.Text = line.Substring("TextBox1Value=".Length);
                             }
-                            else if (line.StartsWith("TextBox2Value="))
-                            {
-                                textBox2.Text = line.Substring("TextBox2Value=".Length);
-                            }
                             else if (line.StartsWith("TextBox3Value="))
                             {
                                 textBox3.Text = line.Substring("TextBox3Value=".Length);
                             }
-                            else if (line.StartsWith("TextBox4Value="))
-                            {
-                                textBox4.Text = line.Substring("TextBox4Value=".Length);
-                            }
+
                         }
                     }
                 }
@@ -80,19 +81,8 @@ namespace MyPointSwitchApp
             }
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            using (var folderBrowser = new FolderBrowserDialog())
-            {
-                DialogResult result = folderBrowser.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    textBox2.Text = folderBrowser.SelectedPath;
-                }
-            }
-        }
 
-        private void button3_Click_1(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             using (var folderBrowser = new FolderBrowserDialog())
             {
@@ -105,32 +95,55 @@ namespace MyPointSwitchApp
             }
         }
 
-        private void button4_Click_1(object sender, EventArgs e)
+        private void button01_Click(object sender, EventArgs e)
         {
-            using (var folderBrowser = new FolderBrowserDialog())
+            string directoryPath = textBox1.Text;
+
+            if (!string.IsNullOrWhiteSpace(directoryPath))
             {
-                DialogResult result = folderBrowser.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    textBox4.Text = folderBrowser.SelectedPath;
-                    ShowSubDirectoriesInTreeView(textBox4.Text, treeView2);
-                }
+                // 使用默认的文件资源管理器打开目录
+                Process.Start("explorer.exe", directoryPath);
+            }
+            else
+            {
+                MessageBox.Show("请输入一个有效的目录路径。");
             }
         }
 
-        private void button5_Click_1(object sender, EventArgs e)
+        private void button03_Click(object sender, EventArgs e)
         {
+            string directoryPath = textBox3.Text;
+
+            if (!string.IsNullOrWhiteSpace(directoryPath))
+            {
+                // 使用默认的文件资源管理器打开目录
+                Process.Start("explorer.exe", directoryPath);
+            }
+            else
+            {
+                MessageBox.Show("请输入一个有效的目录路径。");
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string sourceFolderPath = textBox1.Text;
+            ClearFolder(sourceFolderPath);
+        }
+
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            
             ShowSubDirectoriesInTreeView(textBox3.Text, treeView1);
         }
 
-        private void button7_Click_1(object sender, EventArgs e)
-        {
-            ShowSubDirectoriesInTreeView(textBox4.Text, treeView2);
-        }
 
-        private void button6_Click_1(object sender, EventArgs e)
+
+        //全选复制到目标文件夹
+        private void button6_Click(object sender, EventArgs e)
         {
-            string sourceFolderPath = textBox1.Text;
+            string targetFolderPath = textBox1.Text;
             TreeNode selectedNode = treeView1.SelectedNode;
 
             if (selectedNode == null)
@@ -138,31 +151,20 @@ namespace MyPointSwitchApp
                 MessageBox.Show("请先选择一个文件夹。");
                 return;
             }
+            ClearFolder(targetFolderPath);
+            string sourceFolderPath = Path.Combine(textBox3.Text, selectedNode.FullPath);
+            
+            
+            int replacedFilesCount = CopyFiles(sourceFolderPath, targetFolderPath);
 
-            string targetFolderPath = Path.Combine(textBox3.Text, selectedNode.FullPath);
-            ClearFolder(sourceFolderPath);
-            int replacedFilesCount = CopyFiles(targetFolderPath, sourceFolderPath);
             MessageBox.Show($"已成功替换 {replacedFilesCount} 个文件。");
         }
 
-        private void button8_Click_1(object sender, EventArgs e)
-        {
-            string sourceFolderPath = textBox2.Text;
-            TreeNode selectedNode = treeView2.SelectedNode;
 
-            if (selectedNode == null)
-            {
-                MessageBox.Show("请先选择一个文件夹。");
-                return;
-            }
 
-            string targetFolderPath = Path.Combine(textBox4.Text, selectedNode.FullPath);
-            ClearFolder(sourceFolderPath);
-            int replacedFilesCount = CopyFiles(targetFolderPath, sourceFolderPath);
-            MessageBox.Show($"已成功替换 {replacedFilesCount} 个文件。");
-        }
 
-        private void button9_Click_1(object sender, EventArgs e)
+        //复制到目标文件夹
+        private void button9_Click(object sender, EventArgs e)
         {
             TreeNode selectedNode = treeView1.SelectedNode;
             if (selectedNode == null)
@@ -172,6 +174,8 @@ namespace MyPointSwitchApp
             }
 
             string selectedFolderName = selectedNode.FullPath;
+
+
             string sourceFolderPath = Path.Combine(textBox3.Text, selectedFolderName);
             string targetFolderPath = textBox1.Text;
 
@@ -181,24 +185,8 @@ namespace MyPointSwitchApp
             MessageBox.Show($"成功复制 {copiedFilesCount} 个文件。\n目标文件夹内共有 {targetFilesCount} 个文件。");
         }
 
-        private void button10_Click_1(object sender, EventArgs e)
-        {
-            TreeNode selectedNode = treeView2.SelectedNode;
-            if (selectedNode == null)
-            {
-                MessageBox.Show("请先选择一个文件夹。");
-                return;
-            }
 
-            string selectedFolderName = selectedNode.FullPath;
-            string sourceFolderPath = Path.Combine(textBox4.Text, selectedFolderName);
-            string targetFolderPath = textBox2.Text;
 
-            int copiedFilesCount = CopyFiles(sourceFolderPath, targetFolderPath);
-            int targetFilesCount = Directory.GetFiles(targetFolderPath, "*", SearchOption.AllDirectories).Length;
-
-            MessageBox.Show($"成功复制 {copiedFilesCount} 个文件。\n目标文件夹内共有 {targetFilesCount} 个文件。");
-        }
 
         private void ShowSubDirectoriesInTreeView(string folderPath, System.Windows.Forms.TreeView treeView)
         {
@@ -293,27 +281,30 @@ namespace MyPointSwitchApp
                 {
                     string fileName = Path.GetFileName(sourceFilePath);
                     string targetFilePath = Path.Combine(targetFolderPath, fileName);
-                    File.Copy(sourceFilePath, targetFilePath, true);
                     replacedFilesCount++;
+                    System.IO.File.Copy(sourceFilePath, targetFilePath, false);//是否覆盖
                 }
                 foreach (string sourceSubFolderPath in Directory.GetDirectories(sourceFolderPath))
                 {
                     string subFolderName = new DirectoryInfo(sourceSubFolderPath).Name;
-                    string targetSubFolderPath = Path.Combine(targetFolderPath, subFolderName);
-                    replacedFilesCount += CopyFiles(sourceSubFolderPath, targetSubFolderPath);
+                    //string targetSubFolderPath = Path.Combine(targetFolderPath, subFolderName);
+                    replacedFilesCount += CopyFiles(sourceSubFolderPath, targetFolderPath);
                 }
             }
             catch (UnauthorizedAccessException)
             {
                 MessageBox.Show("没有权限访问文件夹。");
+                
             }
             catch (DirectoryNotFoundException)
             {
                 MessageBox.Show("文件夹不存在。");
+               
             }
             catch (IOException)
             {
-                MessageBox.Show("发生IO错误。");
+                MessageBox.Show($"发生IO错误。\n\n目录可能有同名文件:{sourceFolderPath}\n\n可使用重命名功能修改");
+                
             }
 
             return replacedFilesCount;
@@ -329,9 +320,8 @@ namespace MyPointSwitchApp
                     // 写入textBox1、textBox2、textBox3和textBox4的内容到INI文件
                     writer.WriteLine("[Config]");
                     writer.WriteLine($"TextBox1Value={textBox1.Text}");
-                    writer.WriteLine($"TextBox2Value={textBox2.Text}");
                     writer.WriteLine($"TextBox3Value={textBox3.Text}");
-                    writer.WriteLine($"TextBox4Value={textBox4.Text}");
+
 
                     // 确保数据被立即写入到文件中
                     writer.Flush();
@@ -350,11 +340,6 @@ namespace MyPointSwitchApp
             SaveConfigToIni();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            // 当 textBox2 文本内容发生变化时，保存配置信息到INI文件
-            SaveConfigToIni();
-        }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
@@ -362,70 +347,88 @@ namespace MyPointSwitchApp
             SaveConfigToIni();
         }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
+
+        //批量重命名
+        private void button7_Click(object sender, EventArgs e)
         {
-            // 当 textBox4 文本内容发生变化时，保存配置信息到INI文件
-            SaveConfigToIni();
+            
+            //初始化读取目录
+            TreeNode selectedNode = treeView1.SelectedNode;
+
+            if (selectedNode == null)
+            {
+                MessageBox.Show("请先选择一个文件夹。");
+                return;
+            }
+            string sourceFolderPath = Path.Combine(textBox3.Text, selectedNode.FullPath);
+            //设置重命名文件名
+            string jsonName = textBox2.Text;
+            //读取json
+            //文件名+文件数量  优化子文件夹
+
+            int count=Changejsonname(sourceFolderPath, jsonName);
+            MessageBox.Show($"重命名成功{count}个文件");
+
+            //批量修改json标签
+
+            //重命名文件json
         }
 
-        private void button01_Click(object sender, EventArgs e)
-        {
-            string directoryPath = textBox1.Text;
 
-            if (!string.IsNullOrWhiteSpace(directoryPath))
+        private int Changejsonname(string sourceFolderPath, string newname)
+        {
+            int replacedFilesCount = 0;
+            try
             {
-                // 使用默认的文件资源管理器打开目录
-                Process.Start("explorer.exe", directoryPath);
+                foreach (string sourceFilePath in Directory.GetFiles(sourceFolderPath))
+                {
+                    string fileName = Path.GetFileName(sourceFilePath);
+                    //string targetFilePath = Path.Combine(targetFolderPath, fileName);
+                    replacedFilesCount++;
+
+                    ChangejsonValue(sourceFilePath, "name", (newname + replacedFilesCount));
+
+                    if (System.IO.File.Exists(sourceFilePath))
+                    {
+                        System.IO.File.Move(sourceFilePath, sourceFolderPath + "\\" + newname + replacedFilesCount + ".json");
+                    }  
+                }
+                foreach (string sourceSubFolderPath in Directory.GetDirectories(sourceFolderPath))
+                {
+                    string subFolderName = new DirectoryInfo(sourceSubFolderPath).Name;
+
+                    replacedFilesCount += Changejsonname(sourceSubFolderPath,(newname+ (replacedFilesCount+1)));
+                }
+
             }
-            else
+            catch (IOException)
             {
-                MessageBox.Show("请输入一个有效的目录路径。");
+                MessageBox.Show("发生IO错误。");
             }
+            return replacedFilesCount;
         }
 
-        private void button02_Click(object sender, EventArgs e)
-        {
-            string directoryPath = textBox2.Text;
 
-            if (!string.IsNullOrWhiteSpace(directoryPath))
+        private void ChangejsonValue(string jsonfile, string key, string Value)
+        {
+            try
             {
-                // 使用默认的文件资源管理器打开目录
-                Process.Start("explorer.exe", directoryPath);
+                string jsonString = System.IO.File.ReadAllText(jsonfile);//读取文件
+                JObject jobject = JObject.Parse(jsonString);//解析成json
+                jobject[key] = Value;//替换需要的文件
+                string convertString = Convert.ToString(jobject);//将json装换为string
+                System.IO.File.WriteAllText(jsonfile, convertString);//将内容写进jon文件中
+
             }
-            else
+            catch (IOException)
             {
-                MessageBox.Show("请输入一个有效的目录路径。");
+                MessageBox.Show("发生IO错误。");
             }
+
         }
 
-        private void button03_Click(object sender, EventArgs e)
-        {
-            string directoryPath = textBox3.Text;
 
-            if (!string.IsNullOrWhiteSpace(directoryPath))
-            {
-                // 使用默认的文件资源管理器打开目录
-                Process.Start("explorer.exe", directoryPath);
-            }
-            else
-            {
-                MessageBox.Show("请输入一个有效的目录路径。");
-            }
-        }
 
-        private void button04_Click(object sender, EventArgs e)
-        {
-            string directoryPath = textBox4.Text;
 
-            if (!string.IsNullOrWhiteSpace(directoryPath))
-            {
-                // 使用默认的文件资源管理器打开目录
-                Process.Start("explorer.exe", directoryPath);
-            }
-            else
-            {
-                MessageBox.Show("请输入一个有效的目录路径。");
-            }
-        }
     }
 }
