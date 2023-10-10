@@ -4,9 +4,9 @@
 
 > 适用于Akebi/Korepi使用的点位选择器 
 
-> Json_Integration点位格式[Json_Integration ](https://github.com/Xcating/Json_Integration) 
+> Json_Integration点位格式[Json_Integration](https://github.com/Xcating/Json_Integration) 
 
-> Teyvat_TP_Json点位格式[Teyvat_TP_Json ]https://github.com/chiqingsan/Teyvat_TP_Json
+> Teyvat_TP_Json点位格式[Teyvat_TP_Json](https://github.com/chiqingsan/Teyvat_TP_Json)
 
 ## Introduction
 
