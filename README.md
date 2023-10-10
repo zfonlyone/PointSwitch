@@ -2,17 +2,18 @@
 
 > 适用于Akebi/Korepi使用的点位选择器 
 
-> Json_Integration点位[Json_Integration ](https://github.com/Xcating/Json_Integration) 
+> Json_Integration点位格式[Json_Integration ] 点位(https://github.com/Xcating/Json_Integration) 
 
-> Teyvat_TP_Json点位
+> Teyvat_TP_Json点位格式[Teyvat_TP_Json ]https://github.com/chiqingsan/Teyvat_TP_Json
 
 ## Introduction
 
 [PointSwitch](README.md) 
 
+
 ![image](https://github.com/zfonlyone/PointSwitch/blob/main/IMG/1.png)
 
-
+![image](https://github.com/zfonlyone/PointSwitch/blob/main/IMG/2.png)
 
 
 
@@ -37,7 +38,7 @@
 
 
 
-## warning
+## Warning
 - 一键替换将删除目标文件夹里所有文件，请做好备份
 - 批量重命名将修改选择文件夹里所有json文件
 - 替换操作会将选择文件夹子目录文件复制到同一级目录中注意避免同名文件冲突
