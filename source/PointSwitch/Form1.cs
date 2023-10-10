@@ -17,6 +17,10 @@ using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using System.Linq.Expressions;
 using static System.Net.WebRequestMethods;
+using System.Globalization;
+using System.Threading;
+using System.Resources;
+using PointSwitch.Properties; // 确保使用你的资源文件的正确命名空间
 
 namespace MyPointSwitchApp
 {
@@ -24,8 +28,24 @@ namespace MyPointSwitchApp
     {
         private string iniFilePath;
 
+        private ResourceManager rm;
+
+        private string info_IO_error = PointSwitch.Properties.Resources.info_IO_error;
+        private string info_Dont_permission = PointSwitch.Properties.Resources.info_Dont_permission;
+        private string info_Dont_exist = PointSwitch.Properties.Resources.info_Dont_exist;
+        private string info_OK_copy = PointSwitch.Properties.Resources.info_OK_copy;
+        private string info_select_folder = PointSwitch.Properties.Resources.info_select_folder;
+        private string info_OK_replaced = PointSwitch.Properties.Resources.info_OK_replaced;
+        private string info_INI_error = PointSwitch.Properties.Resources.info_INI_error;
+        private string info_valid_folder = PointSwitch.Properties.Resources.info_valid_folder;
+        private string info_IO_samefile = PointSwitch.Properties.Resources.info_IO_samefile;
+        private string info_rename = PointSwitch.Properties.Resources.info_rename;
+
+
         public Form1()
         {
+            rm = new ResourceManager("PointSwitch.Properties.Resources", typeof(Form1).Assembly);
+            
             InitializeComponent();
 
             // 获取程序根目录下的INI文件路径
@@ -33,8 +53,8 @@ namespace MyPointSwitchApp
 
             // 在窗体加载时从INI文件中加载配置信息
             LoadConfigFromIni();
-
-        }
+            
+    }
 
         private void LoadConfigFromIni()
         {
@@ -65,7 +85,8 @@ namespace MyPointSwitchApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"从INI文件加载配置信息时发生错误：{ex.Message}");
+
+                MessageBox.Show(info_INI_error);
             }
         }
 
@@ -106,7 +127,8 @@ namespace MyPointSwitchApp
             }
             else
             {
-                MessageBox.Show("请输入一个有效的目录路径。");
+
+                MessageBox.Show(info_valid_folder);
             }
         }
 
@@ -121,7 +143,8 @@ namespace MyPointSwitchApp
             }
             else
             {
-                MessageBox.Show("请输入一个有效的目录路径。");
+                MessageBox.Show(info_valid_folder);
+
             }
         }
 
@@ -148,7 +171,8 @@ namespace MyPointSwitchApp
 
             if (selectedNode == null)
             {
-                MessageBox.Show("请先选择一个文件夹。");
+
+                MessageBox.Show(info_select_folder);
                 return;
             }
             ClearFolder(targetFolderPath);
@@ -157,7 +181,8 @@ namespace MyPointSwitchApp
             
             int replacedFilesCount = CopyFiles(sourceFolderPath, targetFolderPath);
 
-            MessageBox.Show($"已成功替换 {replacedFilesCount} 个文件。");
+
+            MessageBox.Show(info_OK_replaced);
         }
 
 
@@ -169,7 +194,8 @@ namespace MyPointSwitchApp
             TreeNode selectedNode = treeView1.SelectedNode;
             if (selectedNode == null)
             {
-                MessageBox.Show("请先选择一个文件夹。");
+
+                MessageBox.Show(info_select_folder);
                 return;
             }
 
@@ -182,7 +208,8 @@ namespace MyPointSwitchApp
             int copiedFilesCount = CopyFiles(sourceFolderPath, targetFolderPath);
             int targetFilesCount = Directory.GetFiles(targetFolderPath, "*", SearchOption.AllDirectories).Length;
 
-            MessageBox.Show($"成功复制 {copiedFilesCount} 个文件。\n目标文件夹内共有 {targetFilesCount} 个文件。");
+
+            MessageBox.Show(info_OK_copy);
         }
 
 
@@ -204,15 +231,18 @@ namespace MyPointSwitchApp
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("没有权限访问该文件夹。");
+
+                MessageBox.Show(info_Dont_permission);
             }
             catch (DirectoryNotFoundException)
             {
-                MessageBox.Show("文件夹不存在。");
+
+                MessageBox.Show(info_Dont_exist);
             }
             catch (IOException)
             {
-                MessageBox.Show("发生IO错误。");
+
+                MessageBox.Show(info_IO_error);
             }
         }
 
@@ -259,15 +289,18 @@ namespace MyPointSwitchApp
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("没有权限访问文件夹。");
+
+                MessageBox.Show(info_Dont_permission);
             }
             catch (DirectoryNotFoundException)
             {
-                MessageBox.Show("文件夹不存在。");
+
+                MessageBox.Show(info_Dont_exist);
             }
             catch (IOException)
             {
-                MessageBox.Show("发生IO错误。");
+
+                MessageBox.Show(info_IO_error);
             }
         }
 
@@ -293,20 +326,19 @@ namespace MyPointSwitchApp
             }
             catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("没有权限访问文件夹。");
-                
+
+                MessageBox.Show(info_Dont_permission);
             }
             catch (DirectoryNotFoundException)
             {
-                MessageBox.Show("文件夹不存在。");
-               
+
+                MessageBox.Show(info_Dont_exist);
             }
             catch (IOException)
             {
-                MessageBox.Show($"发生IO错误。\n\n目录可能有同名文件:{sourceFolderPath}\n\n可使用重命名功能修改");
-                
-            }
 
+                MessageBox.Show(info_IO_samefile);
+            }
             return replacedFilesCount;
         }
 
@@ -330,7 +362,9 @@ namespace MyPointSwitchApp
             catch (Exception ex)
             {
                 // 错误处理代码，您可以选择输出错误日志或记录日志文件等，而不是弹出消息框
-                Console.WriteLine($"从INI文件加载配置信息时发生错误：{ex.Message}");
+
+
+                Console.WriteLine(info_INI_error);
             }
         }
 
@@ -357,7 +391,8 @@ namespace MyPointSwitchApp
 
             if (selectedNode == null)
             {
-                MessageBox.Show("请先选择一个文件夹。");
+
+                MessageBox.Show(info_select_folder);
                 return;
             }
             string sourceFolderPath = Path.Combine(textBox3.Text, selectedNode.FullPath);
@@ -367,8 +402,8 @@ namespace MyPointSwitchApp
             //文件名+文件数量  优化子文件夹
 
             int count=Changejsonname(sourceFolderPath, jsonName);
-            MessageBox.Show($"重命名成功{count}个文件");
 
+            MessageBox.Show(info_rename);
             //批量修改json标签
 
             //重命名文件json
@@ -403,7 +438,8 @@ namespace MyPointSwitchApp
             }
             catch (IOException)
             {
-                MessageBox.Show("发生IO错误。");
+
+                MessageBox.Show(info_IO_error);
             }
             return replacedFilesCount;
         }
@@ -422,12 +458,137 @@ namespace MyPointSwitchApp
             }
             catch (IOException)
             {
-                MessageBox.Show("发生IO错误。");
+
+
+                MessageBox.Show(info_IO_error);
+
+
             }
 
         }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (Thread.CurrentThread.CurrentUICulture.Name == "en-US")
+            {
+                // 切换到中文区域性
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("zh-CN");
+                button2.Text = PointSwitch.Properties.Resources.Language_English; // 更新按钮文本
+                button1.Text = PointSwitch.Properties.Resources.teleports_Folder;
+                button3.Text = PointSwitch.Properties.Resources.point_Folder;
+                button5.Text = PointSwitch.Properties.Resources.Reload;
+                button6.Text = PointSwitch.Properties.Resources.Replace;
+                button01.Text = PointSwitch.Properties.Resources.open_folder;
+                button03.Text = PointSwitch.Properties.Resources.open_folder;
+                button9.Text = PointSwitch.Properties.Resources.incremental_addition;
+                button4.Text = PointSwitch.Properties.Resources.Clear_directory;
+                button7.Text = PointSwitch.Properties.Resources.Batch_Rename;
+                Text = PointSwitch.Properties.Resources.pointswitch;
+
+                info_IO_error = PointSwitch.Properties.Resources.info_IO_error;
+                info_Dont_permission = PointSwitch.Properties.Resources.info_Dont_permission;
+                info_Dont_exist = PointSwitch.Properties.Resources.info_Dont_exist;
+                info_OK_copy = PointSwitch.Properties.Resources.info_OK_copy;
+                info_select_folder = PointSwitch.Properties.Resources.info_select_folder;
+                info_OK_replaced = PointSwitch.Properties.Resources.info_OK_replaced;
+                info_INI_error = PointSwitch.Properties.Resources.info_INI_error;
+                info_valid_folder = PointSwitch.Properties.Resources.info_valid_folder;
+                info_IO_samefile = PointSwitch.Properties.Resources.info_IO_samefile;
+                info_rename = PointSwitch.Properties.Resources.info_rename;
 
 
+
+    }
+            else
+            {
+                // 切换到英文区域性
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-US");
+                button2.Text = PointSwitch.Properties.Resources.Language_Chinese; // 更新按钮文本
+                button1.Text = PointSwitch.Properties.Resources.teleports_Folder_en;
+                button3.Text = PointSwitch.Properties.Resources.point_Folder_en;
+                button5.Text = PointSwitch.Properties.Resources.Reload_en;
+                button6.Text = PointSwitch.Properties.Resources.Replace_en;
+                button01.Text = PointSwitch.Properties.Resources.open_folder_en;
+                button03.Text = PointSwitch.Properties.Resources.open_folder_en;
+                button9.Text = PointSwitch.Properties.Resources.incremental_addition_en;
+                button4.Text = PointSwitch.Properties.Resources.Clear_directory_en;
+                button7.Text = PointSwitch.Properties.Resources.Batch_Rename_en;
+                Text = PointSwitch.Properties.Resources.pointswitch_en;
+
+
+                info_IO_error = PointSwitch.Properties.Resources.info_IO_error_en;
+                info_Dont_permission = PointSwitch.Properties.Resources.info_Dont_permission_en;
+                info_Dont_exist = PointSwitch.Properties.Resources.info_Dont_exist_en;
+                info_OK_copy = PointSwitch.Properties.Resources.info_OK_copy_en;
+                info_select_folder = PointSwitch.Properties.Resources.info_select_folder_en;
+                info_OK_replaced = PointSwitch.Properties.Resources.info_OK_replaced_en;
+                info_INI_error = PointSwitch.Properties.Resources.info_INI_error_en;
+                info_valid_folder = PointSwitch.Properties.Resources.info_valid_folder_en;
+                info_IO_samefile = PointSwitch.Properties.Resources.info_IO_samefile_en;
+                info_rename = PointSwitch.Properties.Resources.info_rename_en;
+
+
+            }
+
+            // 更新界面文本和资源
+            UpdateUIForCurrentLanguage();
+
+            // 重新加载窗体或更新文本
+            this.Invalidate(true);
+        }
+
+        private void UpdateUIForCurrentLanguage()
+        {
+            // 创建资源管理器，用于获取资源文件中的文本
+            //this.rm = new ResourceManager("PointSwitch.Properties.Resources", typeof(Form1).Assembly);
+
+            // 遍历窗体上的所有控件
+            foreach (Control control in this.Controls)
+            {
+                // 检查控件是否具有Name属性，并且Name属性对应于资源文件中的键
+                if (!string.IsNullOrEmpty(control.Name))
+                {
+                    string resourceName = control.Name;
+
+                    // 尝试从资源文件中获取与控件名称匹配的文本
+                    string localizedText = rm.GetString(resourceName, Thread.CurrentThread.CurrentUICulture);
+
+                    if (!string.IsNullOrEmpty(localizedText))
+                    {
+                        // 更新控件的文本属性
+                        control.Text = localizedText;
+                    }
+                }
+
+                // 如果控件有子控件（例如Panel内的控件），递归调用以更新所有控件
+                if (control.HasChildren)
+                {
+                    UpdateUIForCurrentLanguage(control);
+                }
+            }
+        }
+
+        // 递归函数，用于更新子控件
+        private void UpdateUIForCurrentLanguage(Control parentControl)
+        {
+            foreach (Control control in parentControl.Controls)
+            {
+                if (!string.IsNullOrEmpty(control.Name))
+                {
+                    string resourceName = control.Name;
+                    string localizedText = this.rm.GetString(resourceName, Thread.CurrentThread.CurrentUICulture);
+
+                    if (!string.IsNullOrEmpty(localizedText))
+                    {
+                        control.Text = localizedText;
+                    }
+                }
+
+                if (control.HasChildren)
+                {
+                    UpdateUIForCurrentLanguage(control);
+                }
+            }
+        }
 
 
     }
