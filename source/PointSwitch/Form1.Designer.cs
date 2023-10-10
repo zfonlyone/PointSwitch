@@ -115,7 +115,7 @@
             this.button01.Name = "button01";
             this.button01.Size = new System.Drawing.Size(140, 23);
             this.button01.TabIndex = 14;
-            this.button01.Text = "打开目录";
+            this.button01.Text = global::PointSwitch.Properties.Resources.open_folder;
             this.button01.UseVisualStyleBackColor = true;
             this.button01.Click += new System.EventHandler(this.button01_Click);
             // 
@@ -125,7 +125,7 @@
             this.button03.Name = "button03";
             this.button03.Size = new System.Drawing.Size(140, 23);
             this.button03.TabIndex = 16;
-            this.button03.Text = "打开目录";
+            this.button03.Text = global::PointSwitch.Properties.Resources.open_folder;
             this.button03.UseVisualStyleBackColor = true;
             this.button03.Click += new System.EventHandler(this.button03_Click);
             // 
@@ -135,7 +135,7 @@
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(140, 23);
             this.button9.TabIndex = 18;
-            this.button9.Text = "增量添加";
+            this.button9.Text = global::PointSwitch.Properties.Resources.incremental_addition;
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 

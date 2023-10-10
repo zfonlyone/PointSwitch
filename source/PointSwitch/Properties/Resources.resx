@@ -148,10 +148,10 @@
     <value>You don't have permission to access the folder.</value>
   </data>
   <data name="info_INI_error" xml:space="preserve">
-    <value>$"从INI文件加载配置信息时发生错误：{ex.Message}"</value>
+    <value>从INI文件加载配置信息时发生错误：{ex.Message}</value>
   </data>
   <data name="info_INI_error_en" xml:space="preserve">
-    <value>$"An error occurred while loading configuration information from the INI file: {ex.Message}“</value>
+    <value>An error occurred while loading configuration information from the INI file: {ex.Message}</value>
   </data>
   <data name="info_IO_error" xml:space="preserve">
     <value>发生IO错误。</value>
@@ -160,28 +160,28 @@
     <value>IO error occurred.</value>
   </data>
   <data name="info_IO_samefile" xml:space="preserve">
-    <value>$"发生IO错误。\n\n目录可能有同名文件:{sourceFolderPath}\n\n可使用重命名功能修改“</value>
+    <value>发生IO错误。{0} 目录可能有同名文件:{1} {2}可使用重命名功能修改。</value>
   </data>
   <data name="info_IO_samefile_en" xml:space="preserve">
-    <value>$"IO error occurred.\n\nThere may be files with the same name in the folder: {sourceFolderPath}\n\nYou can use the rename function to modify them.”</value>
+    <value>IO error occurred.{0}The directory may have files with the same name: {1}.{2}You can use the rename feature to modify them.</value>
   </data>
   <data name="info_OK_copy" xml:space="preserve">
-    <value>$"成功复制 {copiedFilesCount} 个文件。\n目标文件夹内共有 {targetFilesCount} 个文件。“</value>
+    <value>成功复制 {0} 个文件。{1}目标文件夹内共有 {2} 个文件。</value>
   </data>
   <data name="info_OK_copy_en" xml:space="preserve">
-    <value>$"Successfully copied {copiedFilesCount} files.\nThere are {targetFilesCount} files in the target folder.”</value>
+    <value>Successfully copied {0} files. There are a total of {2} files in the {1} target folder.</value>
   </data>
   <data name="info_OK_replaced" xml:space="preserve">
-    <value>$"已成功替换 {replacedFilesCount} 个文件。”</value>
+    <value>已成功替换 {replacedFilesCount} 个文件。</value>
   </data>
   <data name="info_OK_replaced_en" xml:space="preserve">
     <value>Successfully replaced {replacedFilesCount} files.</value>
   </data>
   <data name="info_rename" xml:space="preserve">
-    <value>$"重命名成功{count}个文件"</value>
+    <value>重命名成功{count}个文件</value>
   </data>
   <data name="info_rename_en" xml:space="preserve">
-    <value>$"Successfully rename {count} files.”</value>
+    <value>Successfully rename {count} files.</value>
   </data>
   <data name="info_select_folder" xml:space="preserve">
     <value>请先选择一个文件夹。</value>

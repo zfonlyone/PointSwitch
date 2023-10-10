@@ -151,7 +151,7 @@ namespace PointSwitch.Properties {
         }
         
         /// <summary>
-        ///   查找类似 $&quot;从INI文件加载配置信息时发生错误：{ex.Message}&quot; 的本地化字符串。
+        ///   查找类似 从INI文件加载配置信息时发生错误：{ex.Message} 的本地化字符串。
         /// </summary>
         internal static string info_INI_error {
             get {
@@ -160,7 +160,7 @@ namespace PointSwitch.Properties {
         }
         
         /// <summary>
-        ///   查找类似 $&quot;An error occurred while loading configuration information from the INI file: {ex.Message}“ 的本地化字符串。
+        ///   查找类似 An error occurred while loading configuration information from the INI file: {ex.Message} 的本地化字符串。
         /// </summary>
         internal static string info_INI_error_en {
             get {
@@ -187,7 +187,7 @@ namespace PointSwitch.Properties {
         }
         
         /// <summary>
-        ///   查找类似 $&quot;发生IO错误。\n\n目录可能有同名文件:{sourceFolderPath}\n\n可使用重命名功能修改“ 的本地化字符串。
+        ///   查找类似 发生IO错误。{0} 目录可能有同名文件:{1} {2}可使用重命名功能修改。 的本地化字符串。
         /// </summary>
         internal static string info_IO_samefile {
             get {
@@ -196,7 +196,7 @@ namespace PointSwitch.Properties {
         }
         
         /// <summary>
-        ///   查找类似 $&quot;IO error occurred.\n\nThere may be files with the same name in the folder: {sourceFolderPath}\n\nYou can use the rename function to modify them.” 的本地化字符串。
+        ///   查找类似 IO error occurred.{0}The directory may have files with the same name: {1}.{2}You can use the rename feature to modify them. 的本地化字符串。
         /// </summary>
         internal static string info_IO_samefile_en {
             get {
@@ -205,7 +205,7 @@ namespace PointSwitch.Properties {
         }
         
         /// <summary>
-        ///   查找类似 $&quot;成功复制 {copiedFilesCount} 个文件。\n目标文件夹内共有 {targetFilesCount} 个文件。“ 的本地化字符串。
+        ///   查找类似 成功复制 {0} 个文件。{1}目标文件夹内共有 {2} 个文件。 的本地化字符串。
         /// </summary>
         internal static string info_OK_copy {
             get {
@@ -214,7 +214,7 @@ namespace PointSwitch.Properties {
         }
         
         /// <summary>
-        ///   查找类似 $&quot;Successfully copied {copiedFilesCount} files.\nThere are {targetFilesCount} files in the target folder.” 的本地化字符串。
+        ///   查找类似 Successfully copied {0} files. There are a total of {2} files in the {1} target folder. 的本地化字符串。
         /// </summary>
         internal static string info_OK_copy_en {
             get {
@@ -223,7 +223,7 @@ namespace PointSwitch.Properties {
         }
         
         /// <summary>
-        ///   查找类似 $&quot;已成功替换 {replacedFilesCount} 个文件。” 的本地化字符串。
+        ///   查找类似 已成功替换 {replacedFilesCount} 个文件。 的本地化字符串。
         /// </summary>
         internal static string info_OK_replaced {
             get {
@@ -241,7 +241,7 @@ namespace PointSwitch.Properties {
         }
         
         /// <summary>
-        ///   查找类似 $&quot;重命名成功{count}个文件&quot; 的本地化字符串。
+        ///   查找类似 重命名成功{count}个文件 的本地化字符串。
         /// </summary>
         internal static string info_rename {
             get {
@@ -250,7 +250,7 @@ namespace PointSwitch.Properties {
         }
         
         /// <summary>
-        ///   查找类似 $&quot;Successfully rename {count} files.” 的本地化字符串。
+        ///   查找类似 Successfully rename {count} files. 的本地化字符串。
         /// </summary>
         internal static string info_rename_en {
             get {

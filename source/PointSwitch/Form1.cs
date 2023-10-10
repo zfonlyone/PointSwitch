@@ -86,7 +86,7 @@ namespace MyPointSwitchApp
             catch (Exception ex)
             {
 
-                MessageBox.Show(info_INI_error);
+                MessageBox.Show(info_INI_error.Replace("{ex.Message}", ex.Message));
             }
         }
 
@@ -182,7 +182,7 @@ namespace MyPointSwitchApp
             int replacedFilesCount = CopyFiles(sourceFolderPath, targetFolderPath);
 
 
-            MessageBox.Show(info_OK_replaced);
+            MessageBox.Show(info_OK_replaced.Replace("{replacedFilesCount}", replacedFilesCount.ToString()));
         }
 
 
@@ -194,7 +194,6 @@ namespace MyPointSwitchApp
             TreeNode selectedNode = treeView1.SelectedNode;
             if (selectedNode == null)
             {
-
                 MessageBox.Show(info_select_folder);
                 return;
             }
@@ -209,13 +208,17 @@ namespace MyPointSwitchApp
             int targetFilesCount = Directory.GetFiles(targetFolderPath, "*", SearchOption.AllDirectories).Length;
 
 
-            MessageBox.Show(info_OK_copy);
+            if (copiedFilesCount !=- 1) {
+                MessageBox.Show(string.Format(info_OK_copy, copiedFilesCount, Environment.NewLine, targetFilesCount));
+            }
+
+            
         }
 
 
 
 
-        private void ShowSubDirectoriesInTreeView(string folderPath, System.Windows.Forms.TreeView treeView)
+        private int ShowSubDirectoriesInTreeView(string folderPath, System.Windows.Forms.TreeView treeView)
         {
             treeView.Nodes.Clear();
             try
@@ -233,20 +236,24 @@ namespace MyPointSwitchApp
             {
 
                 MessageBox.Show(info_Dont_permission);
+                return -1;
             }
             catch (DirectoryNotFoundException)
             {
 
                 MessageBox.Show(info_Dont_exist);
+                return -1;
             }
             catch (IOException)
             {
 
                 MessageBox.Show(info_IO_error);
+                return -1;
             }
+            return 1;
         }
 
-        private void ShowSubDirectoriesRecursive(string path, TreeNode parentNode)
+        private int ShowSubDirectoriesRecursive(string path, TreeNode parentNode)
         {
             try
             {
@@ -271,6 +278,7 @@ namespace MyPointSwitchApp
             {
                 // Handle other IO errors, skip this folder
             }
+            return 1;
         }
 
         private void ClearFolder(string folderPath)
@@ -328,17 +336,24 @@ namespace MyPointSwitchApp
             {
 
                 MessageBox.Show(info_Dont_permission);
+                return -1;
             }
             catch (DirectoryNotFoundException)
             {
 
                 MessageBox.Show(info_Dont_exist);
+                return -1;
             }
             catch (IOException)
             {
 
-                MessageBox.Show(info_IO_samefile);
+               
+
+
+                MessageBox.Show(string.Format(info_IO_samefile, Environment.NewLine, sourceFolderPath, Environment.NewLine));
+                return -1;
             }
+
             return replacedFilesCount;
         }
 
@@ -403,7 +418,7 @@ namespace MyPointSwitchApp
 
             int count=Changejsonname(sourceFolderPath, jsonName);
 
-            MessageBox.Show(info_rename);
+            MessageBox.Show(info_rename.Replace("{count}", count.ToString()));
             //批量修改json标签
 
             //重命名文件json
@@ -440,6 +455,7 @@ namespace MyPointSwitchApp
             {
 
                 MessageBox.Show(info_IO_error);
+                return -1;
             }
             return replacedFilesCount;
         }
