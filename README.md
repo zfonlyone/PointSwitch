@@ -1,5 +1,7 @@
 # PointSwitch
 
+[English README](README_en.md)
+
 > 适用于Akebi/Korepi使用的点位选择器 
 
 > Json_Integration点位格式[Json_Integration ] 点位(https://github.com/Xcating/Json_Integration) 
@@ -8,7 +10,8 @@
 
 ## Introduction
 
-[PointSwitch](README.md) 
+[PointSwitch](https://github.com/zfonlyone/PointSwitch)
+
 
 
 ![image](https://github.com/zfonlyone/PointSwitch/blob/main/IMG/1.png)
@@ -46,7 +49,8 @@
 
 
 ## Quick start
-- 可以在release 下载最新版本 [Release Page](https://github.com/zfonlyone/PointSwitch/releases)
+- 可以在[Release Page](https://github.com/zfonlyone/PointSwitch/releases)下载最新版本。
+
 
 
 
